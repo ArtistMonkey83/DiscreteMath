@@ -31,15 +31,36 @@ NO COMBINATION AT ALL a group of people and there are chairs
 
 using namespace std;
 
+
+toPermute( int permCounter, const char permVariable)
+{
+  permVariable      //what am I doing with the first person? matching up with the left over options
+
+}
+
+
 int main(int argc, const char **argv)     //convert to a number, argc is counter for the number of choices and argv is the value pointer array
 {
   string groupOfPeople; //to hold the data after permutation
-  char input: //to hold the character we are currently evaluating
-  int seats; //number of choices
+  char toPermute; //to hold the character we are currently evaluating
+  int seats, //number of choices
+      counter = argc;
   groupOfPeople = argv[2];//assign the values we are passing
-  seats = argv[1];// value passed that represents the number of options
+  seats = atoi(argv[1]);// value passed that represents the number of options
 
-  cout << groupOfPeople << " groups of people \n"<< seats <<" seats to sit\n";
+  for (int i = 0; i < groupOfPeople.length();i++)
+    {
+      //cout << groupOfPeople[i] << " groupOfPeople @ " << i << endl;
+      toPermute = groupOfPeople[i];
+      if(counter > 0)      // if the counter is not at the start of the string call permutation function recurisvely
+        {
+          perm(argc,toPermute);   //pass the counter and toPermute character to the permutation function to generate output
+          counter--;              //we get here when we have permutated through all options decrement counter for some reason to keep track of how many times we have done this....is it required? feels extra
 
+          cout << counter << " counter @ " << i << " \n;"
+        }
+      else              //if the counter is at the start of the string we are done return to calling function
+        { return 1; }
+    }
   return 0;
 }
