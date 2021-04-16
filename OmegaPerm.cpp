@@ -31,14 +31,14 @@ NO COMBINATION AT ALL a group of people and there are chairs
 #include <iostream>
 using namespace std;
 
-//Function to swap two elements
+/*Function to swap two elements
 void swaped(int &y, int &r)
 {
     int temp = y;
     y = r;
     r = temp;
 }
-
+*/
 
 // Recursive function to find and print all permutations of a string
 void permutes(string str, int i, int n)
@@ -46,22 +46,33 @@ void permutes(string str, int i, int n)
 
     if (i == n - 1)                             // Base condition if index is equal to the last element in the string
     {
-        cout << str << endl;                    // Cout the string as is and return to calling function
+        cout << str[0] << str[1] <<str[2] << endl;                    // Cout the string as is and return to calling function
         return;
     }
 
     for (int j = i; j < n; j++)                 // Process each character of the remaining string
     {
-        swaped(str[i], str[j]);                 // Swap a character at index with the current character using swaped method
+        //swaped(str[i], str[j]);                 // Swap a character at index with the current character using swaped method
+
+        int temp = str[i];
+            str[i] = str[j];
+            str[j] = temp;
+
+
         permutes(str, i + 1, n);                // Recursive call for substring starting at element 2 and ending before the last element
-        swaped(str[i], str[j]);                 // Restoring the string to its original state using backtracking method
+
+            temp = str[i];
+            str[i] = str[j];
+            str[j] = temp;
+
+        //swaped(str[i], str[j]);                 // Restoring the string to its original state using backtracking method
     }
 }
 
 // Main function gets input from commandline and calls permutes function
 int main(int argc, const char **argv)
 {
-    string str = argv[2];                       // Initializing str to the value of the argv variable, which was passed via command line
+    string str = argv[2];  // Initializing str to the value of the argv variable, which was passed via command line
     permutes(str, 0, str.length());             // Calling permutation function with the local copy of the argv[2] string, the starting point of 0 element and the end of the string
 
     return 0;
