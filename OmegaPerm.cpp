@@ -31,6 +31,15 @@ NO COMBINATION AT ALL a group of people and there are chairs
 #include <iostream>
 using namespace std;
 
+//Function to swap two elements
+void swaped(int &y, int &r)
+{
+    int temp = y;
+    y = r;
+    r = temp;
+}
+
+
 // Recursive function to find and print all permutations of a string
 void permutes(string str, int i, int n)
 {
@@ -43,13 +52,11 @@ void permutes(string str, int i, int n)
 
     for (int j = i; j < n; j++)                 // Process each character of the remaining string
     {
-        swap(str[i], str[j]);                   // Swap a character at index with the current character using Standard Template Library's swap method
+        swaped(str[i], str[j]);                 // Swap a character at index with the current character using swaped method
         permutes(str, i + 1, n);                // Recursive call for substring starting at element 2 and ending before the last element
-        swap(str[i], str[j]);                   // Restoring the string to its original state using backtracking method
+        swaped(str[i], str[j]);                 // Restoring the string to its original state using backtracking method
     }
 }
-
-
 
 // Main function gets input from commandline and calls permutes function
 int main(int argc, const char **argv)
